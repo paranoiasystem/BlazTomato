@@ -1,0 +1,50 @@
+@page "/tomatos"
+@inject HttpClient Http
+
+<h1>Tomato - Remaining: @tomatos.Count(tomato => !tomato.isDone)</h1>
+
+<br />
+
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <input class="form-control" placeholder="Name of tomato" @bind="@tomatoName"/>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input class="form-control" placeholder="Number of tomato" @bind="@tomatoNumber"/>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <button class="btn btn-primary" @onclick="AddTomato">Add tomato</button>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<ul class="list-group list-group-flush">
+    @foreach (var tomato in tomatos)
+    {
+        <TomatoItem tomato="@tomato" />
+    }
+</ul>
+
+@code {
+    private IList<Tomato> tomatos = new List<Tomato>();
+    
+    private string tomatoName;
+    private int tomatoNumber = 1;
+
+    private void AddTomato()
+    {
+        if (!string.IsNullOrWhiteSpace(tomatoName)) 
+        {
+            tomatos.Add(new Tomato { name = tomatoName, numberOfTomato = tomatoNumber });
+            tomatoName = string.Empty;
+            tomatoNumber = 1;
+        }
+    }
+}

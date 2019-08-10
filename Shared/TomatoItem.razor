@@ -1,0 +1,28 @@
+
+@if(!tomato.isDone) {
+    <li class="list-group-item">
+        <span class="font-weight-bold">Name: </span> 
+        <span class="font-italic">@tomato.name</span>
+        |
+        <span class="font-weight-bold">Number of tomato: </span>
+        <span class="font-italic">@tomato.numberOfTomato</span>
+        |
+        <span class="font-weight-bold">Done: </span> 
+        <input type="checkbox" @bind="@tomato.isDone" />
+    </li>
+} else {
+    <li class="list-group-item" style="text-decoration: line-through;">
+        <span class="font-weight-bold">Name: </span> 
+        <span class="font-italic">@tomato.name</span>
+        |
+        <span class="font-weight-bold">Number of tomato: </span>
+        <span class="font-italic">@tomato.numberOfTomato</span>
+        |
+        <span class="font-weight-bold">Done: </span> 
+        <input type="checkbox" @bind="@tomato.isDone" />
+    </li>
+}
+
+@code {
+    [Parameter] Tomato tomato { get; set; }
+}
