@@ -7,9 +7,15 @@
     <span class="font-italic">@tomato.numberOfTomato</span>
     |
     <span class="font-weight-bold">Done: </span> 
-    <input type="checkbox" @bind="@tomato.isDone" />
+    <input type="checkbox" @onclick="setDone" />
 </li>
 
 @code {
     [Parameter] Tomato tomato { get; set; }
+
+    private void setDone()
+    {
+        tomato.isDone = !tomato.isDone;
+        StateHasChanged();
+    }
 }
